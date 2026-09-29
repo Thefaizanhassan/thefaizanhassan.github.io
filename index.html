@@ -37,6 +37,12 @@
         }
       }
     </script>
+    <!-- Data-driven sections run first, so main.js can reveal and tilt the cards they build -->
+    <script src="./js/data/projects.js" defer></script>
+    <script src="./js/data/certifications.js" defer></script>
+    <script src="./js/data/subjects.js" defer></script>
+    <script src="./js/data/watchlist.js" defer></script>
+    <script src="./js/sections.js" defer></script>
     <script src="./js/main.js" defer></script>
     <script src="./js/wordmark.js" defer></script>
     <script src="./js/background.js" defer></script>
@@ -52,9 +58,12 @@
       <a href="#profile" class="logo">Faizan Hassan</a>
       <ul class="nav-links" id="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
         <li><a href="#watchlist">Watch List</a></li>
+        <li><a href="#subjects">Subjects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button type="button" class="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
@@ -172,6 +181,71 @@
         </div>
       </section>
 
+      <!-- ================= EXPERIENCE ================= -->
+      <section id="experience" class="block">
+        <div class="container">
+          <header class="sec-head reveal">
+            <p class="eyebrow">Where I've Worked</p>
+            <h2 class="sec-title">Experience</h2>
+          </header>
+
+          <div class="reveal">
+            <article class="glass xp-card" data-tilt="3" aria-labelledby="xp-konkuwan">
+              <div class="xp-head pop-sm">
+                <div class="stat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
+                </div>
+                <div>
+                  <p class="count">Internship</p>
+                  <h3 class="xp-role" id="xp-konkuwan">Full-Stack Software Development Intern</h3>
+                  <p class="xp-org">Konkuwan Herbs Pvt. Ltd.</p>
+                </div>
+                <div class="chips xp-meta">
+                  <span class="chip"><strong>Duration:</strong> May – July 2026</span>
+                  <span class="chip"><strong>Location:</strong> Puri, Odisha, India</span>
+                </div>
+              </div>
+
+              <ul class="xp-points pop-sm">
+                <li>Independently designed and shipped a production-ready full-stack ERP/CRM used to run the company’s public commerce, order management, and farm operations (FarmOps) end-to-end.</li>
+                <li>Built the backend with Express.js and Supabase (PostgreSQL), exposing REST APIs with JSON data consumed via TanStack Query, and enforced role-based access control (RBAC) across 6 permission levels.</li>
+                <li>Developed AI-powered internal tools (CropOS, FarmerOS, War Room) for farm and business operations, including a RAG-style briefing engine that grounds LLM-generated crop and finance reports in live data.</li>
+                <li>Debugged and resolved a critical database split-brain/data inconsistency issue by unifying the backend on Supabase as a single source of truth, then deployed the application to Cloudflare Workers.</li>
+              </ul>
+
+              <div class="xp-stack pop-sm">
+                <p class="topics-label" id="xp-konkuwan-stack">Technologies</p>
+                <ul class="chips" aria-labelledby="xp-konkuwan-stack">
+                  <li class="chip">React</li>
+                  <li class="chip">Vite</li>
+                  <li class="chip">Tailwind CSS</li>
+                  <li class="chip">Express.js</li>
+                  <li class="chip">REST APIs</li>
+                  <li class="chip">Supabase</li>
+                  <li class="chip">PostgreSQL</li>
+                  <li class="chip">TanStack Query</li>
+                  <li class="chip">Cloudflare Workers</li>
+                  <li class="chip">LLM</li>
+                  <li class="chip">RAG</li>
+                </ul>
+              </div>
+
+              <div class="btn-row xp-actions pop">
+                <a class="btn btn-ghost" href="https://github.com/Thefaizanhassan/konkuwan" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.6-2.67-.31-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.05.13 3.01.4c2.29-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+                  View Project<span class="sr-only"> on GitHub (opens in a new tab)</span>
+                </a>
+                <!-- Documents open in a new tab, like the CV button in the hero -->
+                <a class="btn btn-solid" href="./assets/Konkuwan_Herbs_Internship_Report.pdf" target="_blank" rel="noopener" type="application/pdf">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+                  Project Report<span class="sr-only"> (PDF, opens in a new tab)</span>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <!-- ================= SKILLS ================= -->
       <section id="skills" class="block">
         <div class="container">
@@ -223,117 +297,51 @@
             <p class="eyebrow">Browse My Recent</p>
             <h2 class="sec-title">Projects</h2>
           </header>
+        </div>
 
-          <div class="carousel reveal" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Projects — use the arrow keys to browse">
-            <div class="carousel-stage">
-              <article class="p-card" aria-label="Project 1 of 9: Lumina">
-                <div class="glass p-card-inner" data-tilt="10">
-                  <div class="p-thumb"><img src="./assets/Projects/Lumina.png" alt="Lumina - Universal Wisdom guide" loading="lazy" /><span class="p-num">01</span></div>
-                  <h3>Lumina</h3>
-                  <div class="p-actions">
-                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan/Lumina" target="_blank" rel="noopener">GitHub</a>
-                    <!-- <a class="btn btn-sm btn-solid" href="./projects/calculator/index.html" target="_blank" rel="noopener">Live Demo</a> -->
-                  </div>
-                </div>
-              </article>
-              
-              <article class="p-card" aria-label="Project 2 of 9: My Mcp Server">
-                <div class="glass p-card-inner" data-tilt="10">
-                  <div class="p-thumb"><img src="./assets/Projects/myMCPProject.png" alt="MCP Server project" loading="lazy" /><span class="p-num">02</span></div>
-                  <h3>My Mcp Server</h3>
-                  <div class="p-actions">
-                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan/myMcpServer" target="_blank" rel="noopener">GitHub</a>
-                    <!-- <a class="btn btn-sm btn-solid" href="./projects/calculator/index.html" target="_blank" rel="noopener">Live Demo</a> -->
-                  </div>
-                </div>
-              </article>
-
-              <article class="p-card" aria-label="Project 3 of 9: Resume Category Classifier">
-                <div class="glass p-card-inner" data-tilt="10">
-                  <div class="p-thumb"><img src="./assets/Projects/resumeClassifierProject.png" alt="Resume Category Classifier" loading="lazy" /><span class="p-num">03</span></div>
-                  <h3>Resume Category Classifier</h3>
-                  <div class="p-actions">
-                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan/ResumeCategoryClassifier" target="_blank" rel="noopener">GitHub</a>
-                    <!-- <a class="btn btn-sm btn-solid" href="./projects/calculator/index.html" target="_blank" rel="noopener">Live Demo</a> -->
-                  </div>
-                </div>
-              </article>
-
-              <article class="p-card" aria-label="Project 4 of 9: Calculator">
-                <div class="glass p-card-inner" data-tilt="10">
-                  <div class="p-thumb"><img src="./assets/Projects/calculator.png" alt="Calculator project" loading="lazy" /><span class="p-num">04</span></div>
-                  <h3>Calculator</h3>
-                  <div class="p-actions">
-                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan" target="_blank" rel="noopener">GitHub</a>
-                    <a class="btn btn-sm btn-solid" href="./projects/calculator/index.html" target="_blank" rel="noopener">Live Demo</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="p-card" aria-label="Project 5 of 9: Pocket Full of Flowers">
-                <div class="glass p-card-inner" data-tilt="10">
-                  <div class="p-thumb"><img src="./assets/Projects/project-5.png" alt="Pocket Full of Flowers project" loading="lazy" /><span class="p-num">05</span></div>
-                  <h3>Pocket Full of Flowers</h3>
-                  <div class="p-actions">
-                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan/pocketfulflower" target="_blank" rel="noopener">GitHub</a>
-                    <a class="btn btn-sm btn-solid" href="https://pocketfullofflowers.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="p-card" aria-label="Project 6 of 9: Python Password Generator">
-                <div class="glass p-card-inner" data-tilt="10">
-                  <div class="p-thumb"><img src="./assets/Projects/project-4.png" alt="Python Password Generator project" loading="lazy" /><span class="p-num">06</span></div>
-                  <h3>Python Password Generator</h3>
-                  <div class="p-actions">
-                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan/PythonPasswordGenerator" target="_blank" rel="noopener">GitHub</a>
-                    <a class="btn btn-sm btn-solid" href="./projects/pythonPasswordGenerator/index.html" target="_blank" rel="noopener">View Code</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="p-card" aria-label="Project 7 of 9: Automated Email">
-                <div class="glass p-card-inner" data-tilt="10">
-                  <div class="p-thumb"><img src="./assets/Projects/project-1.png" alt="Automated Email project" loading="lazy" /><span class="p-num">07</span></div>
-                  <h3>Automated Email</h3>
-                  <div class="p-actions">
-                    <a class="btn btn-sm btn-solid" href="https://github.com/Thefaizanhassan/Automated-Email-Trigger-App" target="_blank" rel="noopener">GitHub</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="p-card" aria-label="Project 8 of 9: Tic Tac Toe">
-                <div class="glass p-card-inner" data-tilt="10">
-                  <div class="p-thumb"><img src="./assets/Projects/project-2.png" alt="Tic Tac Toe project" loading="lazy" /><span class="p-num">08</span></div>
-                  <h3>Tic Tac Toe</h3>
-                  <div class="p-actions">
-                    <a class="btn btn-sm btn-solid" href="https://github.com/Thefaizanhassan/TicTacToe" target="_blank" rel="noopener">GitHub</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="p-card" aria-label="Project 9 of 9: Generate Shark Image">
-                <div class="glass p-card-inner" data-tilt="10">
-                  <div class="p-thumb"><img src="./assets/Projects/project-3.png" alt="Generate Shark Image project" loading="lazy" /><span class="p-num">09</span></div>
-                  <h3>Generate Shark Image</h3>
-                  <div class="p-actions">
-                    <a class="btn btn-sm btn-solid" href="https://drive.google.com/file/d/17A6caimnUNpC94hL9rWfe5YRFMzUyGSH/view?usp=sharing" target="_blank" rel="noopener">Google Drive</a>
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <div class="carousel-ui">
-              <button type="button" class="arrow-btn" data-dir="-1" aria-label="Previous project">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-              </button>
-              <div class="dots" role="group" aria-label="Choose a project"></div>
-              <span class="counter" aria-live="polite">01 / 09</span>
-              <button type="button" class="arrow-btn" data-dir="1" aria-label="Next project">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-              </button>
-            </div>
+        <div class="carousel reveal">
+          <!-- One card per entry in js/data/projects.js (built by js/sections.js; main.js adds the 3D) -->
+          <div class="carousel-stage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Projects, scrolls sideways">
+            <ul class="carousel-track" data-projects></ul>
           </div>
+
+          <div class="carousel-ui">
+            <button type="button" class="arrow-btn" data-dir="-1" aria-label="Previous project">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div class="dots" role="group" aria-label="Choose a project"></div>
+            <span class="counter" aria-live="polite"></span>
+            <button type="button" class="arrow-btn" data-dir="1" aria-label="Next project">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+          <noscript><p class="noscript-note">Turn on JavaScript to see my projects.</p></noscript>
+        </div>
+      </section>
+
+      <!-- ================= CERTIFICATIONS ================= -->
+      <section id="certifications" class="block">
+        <div class="container">
+          <header class="sec-head reveal">
+            <p class="eyebrow">Credentials I've Earned</p>
+            <h2 class="sec-title">Certifications</h2>
+          </header>
+        </div>
+
+        <div class="reveal">
+          <!-- One card per entry in js/data/certifications.js (built by js/sections.js) -->
+          <div class="h-scroll" data-h-scroll tabindex="0" role="region" aria-label="Certifications, scrolls sideways">
+            <ul class="h-track cert-track" data-certifications></ul>
+          </div>
+          <div class="scroll-ui" hidden>
+            <button type="button" class="arrow-btn" data-scroll-dir="-1" aria-label="Scroll certifications left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="arrow-btn" data-scroll-dir="1" aria-label="Scroll certifications right">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+          <noscript><p class="noscript-note">Turn on JavaScript to see my certifications.</p></noscript>
         </div>
       </section>
 
@@ -344,175 +352,44 @@
             <p class="eyebrow">What I'm Learning</p>
             <h2 class="sec-title">Watch List</h2>
           </header>
+        </div>
 
-          <div class="watch-grid">
-            <!-- Course 1 -->
-            <div class="flip reveal">
-              <div class="flip-inner">
-                <article class="flip-face flip-front">
-                  <a class="thumb-link" href="https://www.youtube.com/watch?v=pTFZFxd4hOI" target="_blank" rel="noopener" aria-label="Watch Docker Tutorial for Beginners on YouTube">
-                    <img src="https://img.youtube.com/vi/pTFZFxd4hOI/maxresdefault.jpg" alt="Docker Tutorial for Beginners thumbnail" loading="lazy" />
-                    <span class="play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
-                  </a>
-                  <div class="body">
-                    <h3>Docker Tutorial for Beginners</h3>
-                    <p>This beginner-friendly tutorial covers the essentials for software and DevOps engineers.</p>
-                    <div class="chips"><span class="chip"><strong>Duration:</strong> 1 hr</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
-                    <button type="button" class="btn btn-sm btn-ghost" data-flip style="margin-top: 1.2rem">Course Details ↻</button>
-                  </div>
-                </article>
-                <article class="flip-face flip-back">
-                  <div class="back-head">
-                    <h3>Course Details</h3>
-                    <button type="button" class="btn btn-sm btn-ghost" data-flip>← Back</button>
-                  </div>
-                  <div class="back-meta"><span class="chip"><strong>Duration:</strong> 1 hr</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
-                  <p class="topics-label">Topics Covered</p>
-                  <ul class="topics">
-                    <li>Docker Essentials & Core Concepts</li>
-                    <li>Container Creation and Management</li>
-                    <li>Working with Docker Images</li>
-                    <li>Building and Using Dockerfiles</li>
-                    <li>Container Networking Basics</li>
-                    <li>Docker Compose Fundamentals</li>
-                  </ul>
-                  <p class="course-desc">Master Docker from scratch with this beginner-friendly tutorial. Learn all the essentials to effectively use containers, aimed at boosting the skills of aspiring and current software and DevOps engineers.</p>
-                  <div class="back-actions"><a class="btn btn-sm btn-solid" href="https://www.youtube.com/watch?v=pTFZFxd4hOI" target="_blank" rel="noopener">▶ Watch on YouTube</a></div>
-                </article>
-              </div>
-            </div>
-
-            <!-- Course 2 -->
-            <div class="flip reveal" style="--d: 0.08s">
-              <div class="flip-inner">
-                <article class="flip-face flip-front">
-                  <a class="thumb-link" href="https://www.youtube.com/watch?v=IPvYjXCsTg8" target="_blank" rel="noopener" aria-label="Watch Computer Networking Full Course on YouTube">
-                    <img src="https://img.youtube.com/vi/IPvYjXCsTg8/maxresdefault.jpg" alt="Computer Networking Full Course thumbnail" loading="lazy" />
-                    <span class="play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
-                  </a>
-                  <div class="body">
-                    <h3>Computer Networking Full Course</h3>
-                    <p>A deep dive into the OSI model with real-life examples.</p>
-                    <div class="chips"><span class="chip"><strong>Duration:</strong> 4 hr 6 min</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
-                    <button type="button" class="btn btn-sm btn-ghost" data-flip style="margin-top: 1.2rem">Course Details ↻</button>
-                  </div>
-                </article>
-                <article class="flip-face flip-back">
-                  <div class="back-head">
-                    <h3>Course Details</h3>
-                    <button type="button" class="btn btn-sm btn-ghost" data-flip>← Back</button>
-                  </div>
-                  <div class="back-meta"><span class="chip"><strong>Duration:</strong> 4 hr 6 min</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
-                  <p class="topics-label">Topics Covered</p>
-                  <ul class="topics">
-                    <li>Client-Server Architecture</li>
-                    <li>Protocols</li>
-                    <li>How Data is Transferred? IP Address</li>
-                    <li>Port Numbers</li>
-                    <li>Submarine Cables Map (Optical Fibre Cables)</li>
-                    <li>LAN, MAN, WAN</li>
-                    <li>MODEM, ROUTER</li>
-                    <li>Topologies (BUS, RING, STAR, TREE, MESH)</li>
-                    <li>Structure of the Network</li>
-                    <li>OSI Model (7 Layers)</li>
-                    <li>TCP/IP Model (5 Layers)</li>
-                    <li>Peer to Peer Architecture</li>
-                    <li>Networking Devices (Download PDF)</li>
-                    <li>Sockets</li>
-                    <li>Ports</li>
-                    <li>HTTP</li>
-                    <li>HTTP(GET, POST, PUT, DELETE)</li>
-                    <li>Error/Status Codes</li>
-                    <li>Cookies</li>
-                    <li>How Email Works?</li>
-                    <li>DNS (Domain Name System)</li>
-                    <li>TCP/IP Model (Transport Layer)</li>
-                    <li>Checksum</li>
-                    <li>Timers</li>
-                    <li>UDP (User Datagram Protocol)</li>
-                    <li>TCP (Transmission Control Protocol)</li>
-                    <li>3-Way handshake</li>
-                    <li>TCP (Network Layer)</li>
-                    <li>Control Plane</li>
-                    <li>IP (Internet Protocol)</li>
-                    <li>Packets</li>
-                    <li>IPV4 vs IPV6</li>
-                    <li>Middle Boxes</li>
-                    <li>(NAT) Network Address Translation</li>
-                    <li>TCP (Data Link Layer)</li>
-                  </ul>
-                  <p class="course-desc">A comprehensive, beginner-friendly series designed to provide a deep dive into how the internet and data communication work. It is part of a larger DevOps Bootcamp but serves as a standalone resource for students and professionals.</p>
-                  <div class="back-actions"><a class="btn btn-sm btn-solid" href="https://www.youtube.com/watch?v=IPvYjXCsTg8" target="_blank" rel="noopener">▶ Watch on YouTube</a></div>
-                </article>
-              </div>
-            </div>
-
-            <!-- Course 3 -->
-            <div class="flip reveal" style="--d: 0.16s">
-              <div class="flip-inner">
-                <article class="flip-face flip-front">
-                  <a class="thumb-link" href="https://www.youtube.com/watch?v=7S_tz1z_5bA" target="_blank" rel="noopener" aria-label="Watch SQL Course for Beginners on YouTube">
-                    <img src="https://img.youtube.com/vi/7S_tz1z_5bA/maxresdefault.jpg" alt="SQL Course for Beginners thumbnail" loading="lazy" />
-                    <span class="play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
-                  </a>
-                  <div class="body">
-                    <h3>SQL Course for Beginners</h3>
-                    <p>This beginner-friendly course teaches you SQL from scratch.</p>
-                    <div class="chips"><span class="chip"><strong>Duration:</strong> 3 hr 10 min</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
-                    <button type="button" class="btn btn-sm btn-ghost" data-flip style="margin-top: 1.2rem">Course Details ↻</button>
-                  </div>
-                </article>
-                <article class="flip-face flip-back">
-                  <div class="back-head">
-                    <h3>Course Details</h3>
-                    <button type="button" class="btn btn-sm btn-ghost" data-flip>← Back</button>
-                  </div>
-                  <div class="back-meta"><span class="chip"><strong>Duration:</strong> 3 hr 10 min</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
-                  <p class="topics-label">Topics Covered</p>
-                  <ul class="topics">
-                    <li>What is SQL?</li>
-                    <li>Installing MySQL</li>
-                    <li>The SELECT Statement</li>
-                    <li>The SELECT Clause</li>
-                    <li>The WHERE Clause</li>
-                    <li>The AND, OR, and NOT Operators</li>
-                    <li>The IN Operator</li>
-                    <li>The BETWEEN Operator</li>
-                    <li>The LIKE Operator</li>
-                    <li>The REGEXP Operator</li>
-                    <li>The IS NULL Operator</li>
-                    <li>The ORDER BY Operator</li>
-                    <li>The LIMIT Operator</li>
-                    <li>Inner Joins</li>
-                    <li>Joining Across Databases</li>
-                    <li>Self Joins</li>
-                    <li>Joining Multiple Tables</li>
-                    <li>Compound Join Conditions</li>
-                    <li>Implicit Join Syntax</li>
-                    <li>Outer Joins</li>
-                    <li>Outer Join Between Multiple Tables</li>
-                    <li>Self Outer Joins</li>
-                    <li>The USING Clause</li>
-                    <li>Natural Joins</li>
-                    <li>Cross Joins</li>
-                    <li>Unions</li>
-                    <li>Column Attributes</li>
-                    <li>Inserting a Single Row</li>
-                    <li>Inserting Multiple Rows</li>
-                    <li>Inserting Hierarchical Rows</li>
-                    <li>Creating a Copy of a Table</li>
-                    <li>Updating a Single Row</li>
-                    <li>Updating Multiple Rows</li>
-                    <li>Using Subqueries in Updates</li>
-                    <li>Deleting Rows</li>
-                    <li>Restoring Course Databases</li>
-                  </ul>
-                  <p class="course-desc">This tutorial is perfect for you if you're completely new to SQL, want a practical, hands-on approach or want to work with data.</p>
-                  <div class="back-actions"><a class="btn btn-sm btn-solid" href="https://www.youtube.com/watch?v=7S_tz1z_5bA" target="_blank" rel="noopener">▶ Watch on YouTube</a></div>
-                </article>
-              </div>
-            </div>
+        <div class="reveal">
+          <!-- One flip card per entry in js/data/watchlist.js (built by js/sections.js) -->
+          <div class="h-scroll" data-h-scroll tabindex="0" role="region" aria-label="Watch list, scrolls sideways">
+            <ul class="h-track watch-track" data-watchlist></ul>
           </div>
+          <div class="scroll-ui" hidden>
+            <button type="button" class="arrow-btn" data-scroll-dir="-1" aria-label="Scroll the watch list left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="arrow-btn" data-scroll-dir="1" aria-label="Scroll the watch list right">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+          <noscript><p class="noscript-note">Turn on JavaScript to see my watch list.</p></noscript>
+        </div>
+      </section>
+
+      <!-- ================= CORE SUBJECTS ================= -->
+      <section id="subjects" class="block block-slim">
+        <div class="container">
+          <header class="sec-head reveal">
+            <p class="eyebrow">Browse My Notes</p>
+            <h2 class="sec-title">Core Subjects</h2>
+          </header>
+        </div>
+
+        <div class="reveal">
+          <!-- One link per entry in js/data/subjects.js (built by js/sections.js) -->
+          <div class="marquee" id="subjects-marquee" data-subjects></div>
+          <div class="marquee-ui">
+            <button type="button" class="arrow-btn marquee-toggle" aria-pressed="false" aria-controls="subjects-marquee" aria-label="Pause the moving subject list">
+              <svg class="i-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5v14"/><path d="M15 5v14"/></svg>
+              <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+          <noscript><p class="noscript-note">Turn on JavaScript to see the subject list.</p></noscript>
         </div>
       </section>
 
@@ -548,9 +425,12 @@
         <div class="glass foot">
           <ul class="nav-links">
             <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
             <li><a href="#watchlist">Watch List</a></li>
+            <li><a href="#subjects">Subjects</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
           <p>Copyright &#169; <span id="year">2026</span> Faizan Hassan. All Rights Reserved.</p>

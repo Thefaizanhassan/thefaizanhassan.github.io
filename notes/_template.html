@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+  NOTES PAGE TEMPLATE
+  To add notes for a subject:
+    1. Copy this file to notes/<subject-name>.html (lowercase, words joined by "-"),
+       e.g. notes/operating-systems.html.
+    2. Replace "Subject Name" below (title, description, heading) with the subject.
+    3. Write the notes between NOTES START and NOTES END.
+    4. Link it from the Core Subjects marquee: add { name, href } to js/data/subjects.js.
+  Files starting with "_" are not published by GitHub Pages, so this template stays private.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subject Name Notes | Faizan Hassan</title>
+    <meta name="description" content="Faizan Hassan's study notes on Subject Name." />
+    <meta name="author" content="Faizan Hassan" />
+    <link rel="icon" type="image/x-icon" href="../assets/profile-pic.ico" />
+
+    <!-- Saved theme before first paint (the portfolio's "theme" key), plus Home and theme buttons -->
+    <script src="notes-theme.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- The portfolio's design system first, then the notes reading styles -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="notes-theme.css" />
+
+    <!-- The portfolio's Contour Embers background -->
+    <script src="../js/background.js" defer></script>
+  </head>
+
+  <body>
+    <canvas class="contour-bg" aria-hidden="true"></canvas>
+
+    <main>
+      <section class="block notes-page">
+        <div class="container notes-layout">
+          <header class="sec-head notes-head">
+            <a class="btn btn-sm btn-ghost notes-back" href="../index.html#subjects">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+              Core Subjects
+            </a>
+            <p class="eyebrow">Core Subject Notes</p>
+            <h1 class="sec-title">Subject Name</h1>
+          </header>
+
+          <article class="glass notes-article">
+            <!-- ============ NOTES START ============
+                 Replace these example topics with your notes. Give each topic a <section> with an
+                 id and an <h2>, then use <h3>, <p>, <ul> / <ol>, <pre><code>, <blockquote> and
+                 <div class="notes-table"><table>…</table></div>. -->
+            <section id="introduction">
+              <h2>1. Introduction</h2>
+              <p>Open each topic with a short summary of what it covers and why it matters.</p>
+              <ul>
+                <li>A key definition or idea</li>
+                <li>Another point worth remembering</li>
+              </ul>
+            </section>
+
+            <section id="worked-example">
+              <h2>2. A worked example</h2>
+              <h3>Step by step</h3>
+              <ol>
+                <li>First step</li>
+                <li>Second step</li>
+              </ol>
+              <pre><code>// Code, pseudo-code or a derivation goes here
+function example() {
+  return "formatted and scrollable";
+}</code></pre>
+              <div class="notes-table">
+                <table>
+                  <thead>
+                    <tr><th>Term</th><th>Meaning</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Example</td><td>Tables scroll sideways on small screens.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <blockquote>
+                <p><strong>Exam tip:</strong> use a callout like this for things to remember.</p>
+              </blockquote>
+            </section>
+            <!-- ============ NOTES END ============ -->
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="glass foot">
+          <p>Copyright &#169; <span id="year">2026</span> Faizan Hassan. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,240 @@
+/* ==========================================================================
+   NOTES THEME — shared by every page in /notes
+   A notes page links ../css/style.css first (the portfolio's design system: tokens, glass cards,
+   buttons, section titles, the contour background), then this file, which adds:
+     1. the --nt-* colour tokens, for notes that style their own layout from them,
+     2. the floating Home and theme buttons added by notes-theme.js,
+     3. reading styles for the notes article (see notes/_template.html).
+   Dark mode follows the portfolio: `.dark-mode` and [data-theme="dark"] on <html>.
+   ========================================================================== */
+
+/* ---------- 1. Tokens: the same values as the portfolio's tokens in ../css/style.css ---------- */
+:root {
+  --nt-bg: #ffffff;
+  --nt-surface: #fafafa;
+  --nt-card: #ffffff;
+  --nt-subtle: #f3f3f3;         /* table heads, code, soft fills */
+  --nt-border: #e2e2e2;         /* hairlines inside cards */
+  --nt-border-strong: #a3a3a3;  /* --line-strong */
+  --nt-ink: #000000;            /* --ink */
+  --nt-text: #353535;           /* --text */
+  --nt-text2: #555555;          /* --muted */
+  --nt-text3: #6b6b6b;          /* --faint */
+  --nt-accent: #353535;         /* --accent */
+  --nt-accent-hover: #000000;
+  --nt-on-accent: #ffffff;
+  --nt-tint: rgba(0, 0, 0, 0.04);
+  --nt-tint-2: rgba(0, 0, 0, 0.08);
+  --nt-pos: #2e7d4f;            /* only for right / wrong, gain / loss */
+  --nt-neg: #b3261e;
+  --nt-code-bg: #f5f5f5;
+  --nt-banner: #1a1a1a;         /* dark title bands, same in both themes */
+  --nt-banner-border: #1a1a1a;
+  --nt-on-banner: #ffffff;
+  --nt-on-banner-2: rgba(255, 255, 255, 0.72);
+  --nt-on-banner-3: rgba(255, 255, 255, 0.45);
+  --nt-glass-hi: rgba(255, 255, 255, 0.86); /* --glass-hi */
+  --nt-key: #9a9a9a;                         /* --key */
+  --nt-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --nt-shadow-lg: 0 6px 16px rgba(0, 0, 0, 0.14);
+  --nt-font: "Poppins", sans-serif;
+  --nt-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.dark-mode,
+[data-theme="dark"] {
+  --nt-bg: #000000;
+  --nt-surface: #0d0d0d;
+  --nt-card: #1a1a1a;
+  --nt-subtle: #141414;
+  --nt-border: #262626;
+  --nt-border-strong: #333333;
+  --nt-ink: #ffffff;
+  --nt-text: #d4d4d4;
+  --nt-text2: #b4b4b4;
+  --nt-text3: #8f8f8f;
+  --nt-accent: #ffffff;
+  --nt-accent-hover: #cccccc;
+  --nt-on-accent: #000000;
+  --nt-tint: rgba(255, 255, 255, 0.05);
+  --nt-tint-2: rgba(255, 255, 255, 0.1);
+  --nt-pos: #7fcf9a;
+  --nt-neg: #f28b82;
+  --nt-code-bg: #111111;
+  --nt-banner-border: #333333;
+  --nt-glass-hi: rgba(26, 26, 26, 0.88);
+  --nt-key: #6b6b6b;
+  --nt-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --nt-shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+
+html { background: var(--nt-bg); }
+
+body {
+  font-family: var(--nt-font);
+  color: var(--nt-text);
+}
+
+::selection { background: var(--nt-tint-2); }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--nt-subtle); }
+::-webkit-scrollbar-thumb { background: #888; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+.dark-mode ::-webkit-scrollbar-thumb { background: #555; }
+.dark-mode ::-webkit-scrollbar-thumb:hover { background: #777; }
+
+/* ---------- 2. Floating buttons: the portfolio's theme toggle, with Home above it ---------- */
+.nt-fab {
+  position: fixed;
+  right: 2rem;
+  z-index: 55;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--nt-border-strong);
+  background: var(--nt-glass-hi);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: var(--nt-ink);
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.nt-fab:hover { transform: scale(1.1); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); }
+.nt-fab:active { transform: scale(0.95); }
+.nt-fab:focus-visible { outline: 2px solid var(--nt-ink); outline-offset: 4px; }
+
+.nt-theme { bottom: 2rem; width: 60px; height: 60px; font-size: 1.8rem; }
+.nt-theme:hover { transform: scale(1.1) rotate(-8deg); }
+
+.nt-home { bottom: calc(2rem + 72px); right: calc(2rem + 6px); width: 48px; height: 48px; }
+.nt-home svg { width: 20px; height: 20px; }
+
+/* Optional back-to-top button (add <button class="nt-fab nt-top">), stacked above Home */
+.nt-top {
+  bottom: calc(2rem + 132px);
+  right: calc(2rem + 6px);
+  width: 48px;
+  height: 48px;
+  font-size: 1.1rem;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nt-top.visible { opacity: 1; pointer-events: auto; }
+
+@media (max-width: 640px) {
+  .nt-fab { right: 1.5rem; }
+  .nt-theme { width: 50px; height: 50px; bottom: 1.5rem; font-size: 1.5rem; }
+  .nt-home { width: 42px; height: 42px; bottom: calc(1.5rem + 60px); right: calc(1.5rem + 4px); }
+  .nt-top { width: 42px; height: 42px; bottom: calc(1.5rem + 112px); right: calc(1.5rem + 4px); }
+}
+
+/* ---------- 3. Reading styles for the notes article (uses the tokens in ../css/style.css) ---------- */
+section.notes-page { padding-top: clamp(56px, 8vw, 96px); }
+
+.notes-layout { max-width: 920px; }
+
+.notes-head { margin-bottom: clamp(2rem, 5vw, 3rem); }
+.notes-back { margin-bottom: 1.8rem; }
+.notes-head .chips { justify-content: center; }
+
+.notes-article { padding: clamp(1.6rem, 4vw, 2.8rem); }
+
+.notes-article h2 {
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 2.6rem 0 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 24px;
+}
+
+.notes-article h3 { font-size: 1.15rem; font-weight: 700; color: var(--ink); margin: 1.8rem 0 0.6rem; }
+.notes-article > :first-child,
+.notes-article > section:first-child > h2:first-child { margin-top: 0; }
+
+.notes-article p { font-size: 1rem; line-height: 1.8; color: var(--text); margin-bottom: 1rem; }
+.notes-article strong { color: var(--ink); }
+.notes-article a:not(.btn) { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+.notes-article ul,
+.notes-article ol { margin-bottom: 1.2rem; }
+
+.notes-article ul li {
+  position: relative;
+  padding: 0.3rem 0 0.3rem 1.3rem;
+  line-height: 1.7;
+}
+
+.notes-article ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.1rem;
+  top: 0.95rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.notes-article ol { list-style: decimal; padding-left: 1.4rem; }
+.notes-article ol li { padding: 0.3rem 0 0.3rem 0.2rem; line-height: 1.7; }
+
+.notes-article code {
+  font-family: var(--nt-mono);
+  font-size: 0.88em;
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+
+.notes-article pre {
+  margin-bottom: 1.2rem;
+  padding: 1rem 1.2rem;
+  border-radius: 1.1rem;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+.notes-article pre code { padding: 0; border: 0; background: none; font-size: 0.86rem; }
+
+.notes-table { overflow-x: auto; margin-bottom: 1.2rem; }
+.notes-article table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.notes-article th,
+.notes-article td { text-align: left; padding: 0.65rem 0.8rem; border-bottom: 1px solid var(--line); }
+.notes-article th { color: var(--ink); font-weight: 600; background: var(--line); }
+
+.notes-article blockquote {
+  margin-bottom: 1.2rem;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--ink);
+  border-radius: 0 1rem 1rem 0;
+  background: var(--glass-hi);
+}
+
+.notes-article blockquote p:last-child { margin-bottom: 0; }
+
+.notes-article hr { border: 0; border-top: 1px dashed var(--line); margin: 2rem 0; }
+
+/* "Notes on the way" card for a subject that has no notes yet */
+.notes-empty { text-align: center; padding: 1rem 0; }
+.notes-empty .stat-icon { margin: 0 auto 1.2rem; }
+.notes-article .notes-empty h2 { margin: 0 0 0.6rem; padding: 0; border: 0; }
+.notes-empty p { max-width: 34rem; margin: 0 auto 1.6rem; color: var(--muted); }
+.notes-empty .btn-row { justify-content: center; }
+
+@media print {
+  .nt-fab, .contour-bg, .notes-back { display: none !important; }
+  .glass::before { -webkit-backdrop-filter: none; backdrop-filter: none; }
+}

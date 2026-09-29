@@ -6,50 +6,65 @@
     <title>Python Password Generator | Faizan Hassan</title>
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../../assets/profile-pic.ico" />
+
+    <!-- The portfolio's saved theme before first paint, and the theme button -->
+    <script src="../project-page.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- The portfolio's design system, the shared demo page frame, then this page's own styles -->
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../project-page.css" />
     <link rel="stylesheet" href="style.css">
+
+    <!-- The portfolio's Contour Embers background -->
+    <script src="../../js/background.js" defer></script>
 </head>
 <body>
+    <canvas class="contour-bg" aria-hidden="true"></canvas>
+
     <!-- Navigation Header -->
-    <nav class="project-nav">
-      <a href="../../index.html" class="back-button">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
-        <span>Back to Portfolio</span>
+    <header class="nav scrolled project-nav">
+      <a href="../../index.html#projects" class="btn btn-sm btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>Back<span class="wide-only"> to Portfolio</span></span>
       </a>
-      
-      <a href="https://github.com/Thefaizanhassan/PythonPasswordGenerator" target="_blank" class="github-link">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-        <span>View on GitHub</span>
+
+      <a href="https://github.com/Thefaizanhassan/PythonPasswordGenerator" target="_blank" rel="noopener" class="btn btn-sm btn-solid">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <span><span class="wide-only">View on </span>GitHub</span><span class="sr-only"> (opens in a new tab)</span>
       </a>
-    </nav>
+    </header>
 
-    <!-- Project Header -->
-    <div class="project-header">
-      <h1>🔐 Password Generator</h1>
-      <p>by Faizan Hassan</p>
-    </div>
+    <main>
+      <section class="block project-page">
+        <div class="container project-layout">
+          <!-- Project Header -->
+          <header class="sec-head">
+            <p class="eyebrow">Project Demo</p>
+            <h1 class="sec-title">🔐 Password Generator</h1>
+            <p class="project-by">by Faizan Hassan</p>
+          </header>
 
-    <!-- Main Container -->
-    <div class="container">
-        <div class="code-container">
+          <!-- Code -->
+          <div class="glass code-container">
             <div class="code-header">
                 <span class="code-label">Python Code</span>
-                <button class="copy-button" onclick="copyCode()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="copied-message" id="copiedMsg">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copied!
+                </div>
+                <button class="btn btn-sm btn-solid copy-button" type="button" onclick="copyCode()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                     </svg>
                     <span>Copy</span>
                 </button>
-            </div>
-            <div class="copied-message" id="copiedMsg">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Copied!
             </div>
             <pre><code id="codeSnippet">import random
 <!-- import string
@@ -236,18 +251,33 @@ def main():
 if __name__ == "__main__":
     main()
 </code></pre>
-        </div>
+          </div>
 
-        <!-- Project Info Footer -->
-        <div class="project-info">
+          <!-- Project Info -->
+          <div class="project-info">
             <p>Built with modern Python practices</p>
-            <div class="tech-stack">
-                <span class="tech-badge">Python</span>
-                <span class="tech-badge">Random Module</span>
-                <span class="tech-badge">String Module</span>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">Random Module</span>
+              <span class="chip">String Module</span>
             </div>
+          </div>
         </div>
-    </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="glass foot">
+          <p>Copyright &#169; <span id="year">2026</span> Faizan Hassan. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <span class="theme-icon" aria-hidden="true">🌙</span>
+    </button>
 
     <script>
         function copyCode() {

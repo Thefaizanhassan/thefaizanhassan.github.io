@@ -1,0 +1,29 @@
+/* ==========================================================================
+   PROJECT DEMO PAGES: shared by every page in /projects
+   A demo page links ../../css/style.css first (the portfolio's design system: colour tokens, glass
+   cards, buttons, section titles, the theme button and the contour background), then this file for
+   the page frame (top bar, heading, "built with" chips), then its own style.css for the demo itself.
+   ========================================================================== */
+
+/* Top bar: the portfolio's glass nav, with the way back on the left and the source code on the right */
+.project-nav { padding: 0 10px; }
+
+/* Room under the fixed top bar */
+section.project-page { padding-top: calc(var(--nav-h) + clamp(16px, 3vw, 32px)); }
+
+.project-layout { display: flex; flex-direction: column; align-items: center; }
+
+.project-by { margin-top: 0.7rem; font-weight: 500; color: var(--muted); }
+
+.project-info { margin-top: clamp(1.6rem, 3vw, 2.2rem); text-align: center; }
+.project-info p { font-size: 0.9rem; color: var(--muted); }
+.project-info .chips { justify-content: center; margin-top: 0.8rem; }
+
+/* Phones: the top bar buttons shorten to "Back" and "GitHub" */
+@media (max-width: 480px) {
+  .wide-only { display: none; }
+}
+
+@media print {
+  .contour-bg, .project-nav, .theme-toggle { display: none !important; }
+}
