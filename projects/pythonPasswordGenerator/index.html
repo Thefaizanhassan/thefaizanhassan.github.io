@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Password Generator | Faizan Hassan</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/profile-pic.ico" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="project-nav">
+      <a href="../../index.html" class="back-button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>Back to Portfolio</span>
+      </a>
+      
+      <a href="https://github.com/Thefaizanhassan/PythonPasswordGenerator" target="_blank" class="github-link">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+        <span>View on GitHub</span>
+      </a>
+    </nav>
+
+    <!-- Project Header -->
+    <div class="project-header">
+      <h1>🔐 Password Generator</h1>
+      <p>by Faizan Hassan</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="code-container">
+            <div class="code-header">
+                <span class="code-label">Python Code</span>
+                <button class="copy-button" onclick="copyCode()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy</span>
+                </button>
+            </div>
+            <div class="copied-message" id="copiedMsg">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Copied!
+            </div>
+            <pre><code id="codeSnippet">import random
+<!-- import string
+
+def generate_password(length=12):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+
+# Generate a password
+password = generate_password(16)
+print(f"Generated Password: {password}") -->
+import secrets
+import string
+
+def generate_password(min_length, numbers=True, special_characters=True):
+    """
+    Generate a secure random password with specified criteria.
+    
+    Args:
+        min_length (int): Minimum length of the password
+        numbers (bool): Include numbers in the password
+        special_characters (bool): Include special characters in the password
+    
+    Returns:
+        str: Generated password meeting all criteria
+    """
+    # Define character sets
+    letters = string.ascii_letters
+    digits = string.digits
+    special = string.punctuation
+
+    # Build the character pool based on requirements
+    characters = letters
+    if numbers:
+        characters += digits
+    if special_characters:
+        characters += special
+
+    # Initialize password and tracking variables
+    pwd = ""
+    has_number = False
+    has_special = False
+
+    # Generate password until all criteria are met
+    while len(pwd) < min_length or not meets_criteria(numbers, special_characters, has_number, has_special):
+        # Use secrets.choice for cryptographic security
+        new_char = secrets.choice(characters)
+        pwd += new_char
+        
+        # Track which criteria have been satisfied
+        if new_char in digits:
+            has_number = True
+        elif new_char in special:
+            has_special = True
+
+    return pwd
+
+
+def meets_criteria(needs_numbers, needs_special, has_number, has_special):
+    """
+    Check if the password meets all required criteria.
+    
+    Args:
+        needs_numbers (bool): Whether numbers are required
+        needs_special (bool): Whether special characters are required
+        has_number (bool): Whether password currently has a number
+        has_special (bool): Whether password currently has a special character
+    
+    Returns:
+        bool: True if all criteria are met, False otherwise
+    """
+    if needs_numbers and not has_number:
+        return False
+    if needs_special and not has_special:
+        return False
+    return True
+
+
+def get_valid_input(prompt, valid_responses):
+    """
+    Get validated user input.
+    
+    Args:
+        prompt (str): The prompt to display to the user
+        valid_responses (list): List of valid responses
+    
+    Returns:
+        str: Valid user input
+    """
+    while True:
+        response = input(prompt).lower().strip()
+        if response in valid_responses:
+            return response
+        print(f"Invalid input. Please enter one of: {', '.join(valid_responses)}")
+
+
+def get_password_strength(password):
+    """
+    Evaluate password strength based on various criteria.
+    
+    Args:
+        password (str): The password to evaluate
+    
+    Returns:
+        str: Strength rating (Weak, Medium, Strong, Very Strong)
+    """
+    score = 0
+    
+    # Length scoring
+    if len(password) >= 8:
+        score += 1
+    if len(password) >= 12:
+        score += 1
+    if len(password) >= 16:
+        score += 1
+    
+    # Character variety scoring
+    if any(c.islower() for c in password):
+        score += 1
+    if any(c.isupper() for c in password):
+        score += 1
+    if any(c.isdigit() for c in password):
+        score += 1
+    if any(c in string.punctuation for c in password):
+        score += 1
+    
+    # Return strength rating
+    if score <= 3:
+        return "Weak"
+    elif score <= 5:
+        return "Medium"
+    elif score <= 6:
+        return "Strong"
+    else:
+        return "Very Strong"
+
+
+def main():
+    """Main function to run the password generator."""
+    print("=" * 50)
+    print("         SECURE PASSWORD GENERATOR")
+    print("=" * 50)
+    
+    # Get minimum length with validation
+    while True:
+        try:
+            min_length = int(input("\nEnter minimum length (recommended: 12+): "))
+            if min_length < 4:
+                print("Password length should be at least 4 characters.")
+                continue
+            break
+        except ValueError:
+            print("Please enter a valid number.")
+    
+    # Get user preferences for password composition
+    has_number = get_valid_input(
+        "Include numbers? (y/n): ", 
+        ['y', 'n', 'yes', 'no']
+    ) in ['y', 'yes']
+    
+    has_special = get_valid_input(
+        "Include special characters? (y/n): ", 
+        ['y', 'n', 'yes', 'no']
+    ) in ['y', 'yes']
+    
+    # Generate the password
+    print("\nGenerating password...")
+    pwd = generate_password(min_length, has_number, has_special)
+    
+    # Display results
+    print("\n" + "=" * 50)
+    print(f"Generated Password: {pwd}")
+    print(f"Length: {len(pwd)} characters")
+    print(f"Strength: {get_password_strength(pwd)}")
+    print("=" * 50)
+    
+    # Security reminder
+    if not has_number or not has_special:
+        print("\n⚠️  Tip: Using numbers AND special characters makes your password more secure!")
+
+
+# Run the program
+if __name__ == "__main__":
+    main()
+</code></pre>
+        </div>
+
+        <!-- Project Info Footer -->
+        <div class="project-info">
+            <p>Built with modern Python practices</p>
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Random Module</span>
+                <span class="tech-badge">String Module</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyCode() {
+            const code = document.getElementById('codeSnippet').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const message = document.getElementById('copiedMsg');
+                message.style.display = 'flex';
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert('Failed to copy code.');
+            });
+        }
+    </script>
+</body>
+</html>

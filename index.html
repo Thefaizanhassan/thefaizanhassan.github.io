@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faizan Hassan | Software Developer & Aspiring Data Scientist</title>
+    <meta name="description" content="Portfolio of Faizan Hassan - Software Developer and aspiring Data Scientist working across web development, machine learning, and data analysis." />
+    <meta name="keywords" content="Faizan Hassan, Software Developer, Data Scientist, Web Development, Machine Learning, Portfolio" />
+    <meta name="author" content="Faizan Hassan" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/profile-pic.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/profile-pic.ico" />
+
+    <!-- Saved theme before first paint (the "theme" key: "dark" or "light") -->
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark-mode");
+      } catch (e) {}
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Inter ExtraBold, only the glyphs of the FAIZAN wordmark -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&text=FAIZAN&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- three.js for the About portrait, fetched only when that section comes near -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script src="./js/main.js" defer></script>
+    <script src="./js/wordmark.js" defer></script>
+    <script src="./js/background.js" defer></script>
+    <script src="./js/portrait.js" defer></script>
+  </head>
+
+  <body>
+    <canvas class="contour-bg" aria-hidden="true"></canvas>
+    <div class="progress" aria-hidden="true"></div>
+
+    <!-- ================= NAV ================= -->
+    <header class="nav">
+      <a href="#profile" class="logo">Faizan Hassan</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#watchlist">Watch List</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button type="button" class="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <main>
+      <!-- ================= HERO ================= -->
+      <section id="profile" class="hero">
+        <div class="container hero-grid">
+          <div class="hero-text">
+            <p class="eyebrow reveal">Hello, I'm</p>
+            <!-- The name is the FAIZAN wordmark from codeLight.tsx / codeDark.tsx (js/wordmark.js) -->
+            <h1 class="hero-name reveal" style="--d: 0.08s">
+              <span class="sr-only">Faizan Hassan</span>
+              <span class="wordmark" aria-hidden="true">
+                <canvas></canvas>
+                <span class="wordmark-fallback">FAIZAN</span>
+              </span>
+            </h1>
+
+            <div class="roles reveal" style="--d: 0.16s">
+              <p class="sr-only">Software Developer Intern | Aspiring Data Scientist | AI/ML Enthusiast | Problem Solver</p>
+              <div class="prism" aria-hidden="true">
+                <span style="--i: 0">Software Developer Intern</span>
+                <span style="--i: 1">Aspiring Data Scientist</span>
+                <span style="--i: 2">AI/ML Enthusiast</span>
+                <span style="--i: 3">Problem Solver</span>
+              </div>
+            </div>
+
+            <div class="btn-row reveal" style="--d: 0.24s">
+              <a class="btn btn-ghost" href="./assets/Faizan Hassan CV.pdf" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                Download CV
+              </a>
+              <a class="btn btn-solid" href="#contact">Contact Info</a>
+            </div>
+
+            <div class="socials reveal" style="--d: 0.32s">
+              <a class="social" href="https://www.linkedin.com/in/thefaizanhassan/" target="_blank" rel="noopener" aria-label="My LinkedIn profile">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+              </a>
+              <a class="social" href="https://github.com/Thefaizanhassan" target="_blank" rel="noopener" aria-label="My GitHub profile">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.73-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.6-2.67-.31-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.05.13 3.01.4c2.29-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-photo-wrap">
+            <div class="hero-photo" data-tilt="14">
+              <span class="ring" aria-hidden="true"></span>
+              <span class="ring two" aria-hidden="true"></span>
+              <img src="./assets/profile-pic.png" alt="Faizan Hassan profile picture" width="1000" height="1000" />
+            </div>
+          </div>
+        </div>
+
+        <a class="scroll-cue" href="#about" aria-label="Scroll to About">
+          <span class="mouse" aria-hidden="true"></span>
+          Scroll
+        </a>
+      </section>
+
+      <!-- ================= ABOUT ================= -->
+      <section id="about" class="block">
+        <div class="container">
+          <header class="sec-head reveal">
+            <p class="eyebrow">Get To Know More</p>
+            <h2 class="sec-title">About Me</h2>
+          </header>
+
+          <div class="about-grid">
+            <div class="reveal">
+              <div class="stack" data-tilt="10">
+                <span class="layer l2" aria-hidden="true"></span>
+                <span class="layer l1" aria-hidden="true"></span>
+                <!-- Particle portrait from code.html (js/portrait.js) -->
+                <div class="code-swarm" role="img" aria-label="Faizan Hassan"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="about-cards">
+                <div class="reveal" style="--d: 0.05s">
+                  <article class="glass stat" data-tilt="12">
+                    <div class="stat-icon pop" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
+                    </div>
+                    <h3 class="pop-sm">Experience</h3>
+                    <p class="pop-sm">6 months<br />E-commerce Grocery Startup</p>
+                  </article>
+                </div>
+                <div class="reveal" style="--d: 0.12s">
+                  <article class="glass stat" data-tilt="12">
+                    <div class="stat-icon pop" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9 12 4 2 9l10 5 10-5Z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg>
+                    </div>
+                    <h3 class="pop-sm">Education</h3>
+                    <p class="pop-sm">B.Tech in Computer Science &amp; Engineering<br />B.S. in Data Science</p>
+                  </article>
+                </div>
+              </div>
+
+              <div class="reveal" style="--d: 0.18s">
+                <div class="glass about-text" data-tilt="4">
+                  <p class="pop-sm">
+                    I'm a Computer Science Engineering student with a strong foundation in Data Structures, Algorithms, and full-stack development. I've contributed to technical teams by building responsive web applications and improving user experience, including work as a Web Developer for IIT Madras' Diplomacia Society. With experience ranging from software development to co-founding an e-commerce initiative, I bring a blend of technical skill, problem-solving ability, and product mindset. I’m currently seeking opportunities to apply my skills in software engineering while continuing to learn and grow.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SKILLS ================= -->
+      <section id="skills" class="block">
+        <div class="container">
+          <header class="sec-head reveal">
+            <p class="eyebrow">Explore My</p>
+            <h2 class="sec-title">Skills</h2>
+          </header>
+
+          <div class="skills-grid">
+            <div class="reveal">
+              <article class="glass skill-panel" data-tilt="6">
+                <div class="panel-head pop-sm">
+                  <h3>Coding Languages</h3>
+                  <span class="count">6 skills</span>
+                </div>
+                <ul class="skills">
+                  <li class="skill"><div class="skill-top"><h4>HTML</h4><small>Experienced</small></div><div class="meter" data-level="3" aria-hidden="true"><i></i><i></i><i></i></div></li>
+                  <li class="skill"><div class="skill-top"><h4>C</h4><small>Experienced</small></div><div class="meter" data-level="3" aria-hidden="true"><i></i><i></i><i></i></div></li>
+                  <li class="skill"><div class="skill-top"><h4>C++</h4><small>Intermediate</small></div><div class="meter" data-level="2" aria-hidden="true"><i></i><i></i><i></i></div></li>
+                  <li class="skill"><div class="skill-top"><h4>Python</h4><small>Basic</small></div><div class="meter" data-level="1" aria-hidden="true"><i></i><i></i><i></i></div></li>
+                  <li class="skill"><div class="skill-top"><h4>JavaScript</h4><small>Basic</small></div><div class="meter" data-level="1" aria-hidden="true"><i></i><i></i><i></i></div></li>
+                  <li class="skill"><div class="skill-top"><h4>TypeScript</h4><small>Intermediate</small></div><div class="meter" data-level="2" aria-hidden="true"><i></i><i></i><i></i></div></li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="reveal" style="--d: 0.1s">
+              <article class="glass skill-panel" data-tilt="6">
+                <div class="panel-head pop-sm">
+                  <h3>Web Development</h3>
+                  <span class="count">4 skills</span>
+                </div>
+                <ul class="skills">
+                  <li class="skill"><div class="skill-top"><h4>Node JS</h4><small>Basic</small></div><div class="meter" data-level="1" aria-hidden="true"><i></i><i></i><i></i></div></li>
+                  <li class="skill"><div class="skill-top"><h4>Learn JS</h4><small>Intermediate</small></div><div class="meter" data-level="2" aria-hidden="true"><i></i><i></i><i></i></div></li>
+                  <li class="skill"><div class="skill-top"><h4>Express JS</h4><small>Intermediate</small></div><div class="meter" data-level="2" aria-hidden="true"><i></i><i></i><i></i></div></li>
+                  <li class="skill"><div class="skill-top"><h4>Git</h4><small>Intermediate</small></div><div class="meter" data-level="2" aria-hidden="true"><i></i><i></i><i></i></div></li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PROJECTS ================= -->
+      <section id="projects" class="block">
+        <div class="container">
+          <header class="sec-head reveal">
+            <p class="eyebrow">Browse My Recent</p>
+            <h2 class="sec-title">Projects</h2>
+          </header>
+
+          <div class="carousel reveal" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Projects — use the arrow keys to browse">
+            <div class="carousel-stage">
+              <article class="p-card" aria-label="Project 1 of 9: Lumina">
+                <div class="glass p-card-inner" data-tilt="10">
+                  <div class="p-thumb"><img src="./assets/Projects/Lumina.png" alt="Lumina - Universal Wisdom guide" loading="lazy" /><span class="p-num">01</span></div>
+                  <h3>Lumina</h3>
+                  <div class="p-actions">
+                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan/Lumina" target="_blank" rel="noopener">GitHub</a>
+                    <!-- <a class="btn btn-sm btn-solid" href="./projects/calculator/index.html" target="_blank" rel="noopener">Live Demo</a> -->
+                  </div>
+                </div>
+              </article>
+              
+              <article class="p-card" aria-label="Project 2 of 9: My Mcp Server">
+                <div class="glass p-card-inner" data-tilt="10">
+                  <div class="p-thumb"><img src="./assets/Projects/myMCPProject.png" alt="MCP Server project" loading="lazy" /><span class="p-num">02</span></div>
+                  <h3>My Mcp Server</h3>
+                  <div class="p-actions">
+                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan/myMcpServer" target="_blank" rel="noopener">GitHub</a>
+                    <!-- <a class="btn btn-sm btn-solid" href="./projects/calculator/index.html" target="_blank" rel="noopener">Live Demo</a> -->
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card" aria-label="Project 3 of 9: Resume Category Classifier">
+                <div class="glass p-card-inner" data-tilt="10">
+                  <div class="p-thumb"><img src="./assets/Projects/resumeClassifierProject.png" alt="Resume Category Classifier" loading="lazy" /><span class="p-num">03</span></div>
+                  <h3>Resume Category Classifier</h3>
+                  <div class="p-actions">
+                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan/ResumeCategoryClassifier" target="_blank" rel="noopener">GitHub</a>
+                    <!-- <a class="btn btn-sm btn-solid" href="./projects/calculator/index.html" target="_blank" rel="noopener">Live Demo</a> -->
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card" aria-label="Project 4 of 9: Calculator">
+                <div class="glass p-card-inner" data-tilt="10">
+                  <div class="p-thumb"><img src="./assets/Projects/calculator.png" alt="Calculator project" loading="lazy" /><span class="p-num">04</span></div>
+                  <h3>Calculator</h3>
+                  <div class="p-actions">
+                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan" target="_blank" rel="noopener">GitHub</a>
+                    <a class="btn btn-sm btn-solid" href="./projects/calculator/index.html" target="_blank" rel="noopener">Live Demo</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card" aria-label="Project 5 of 9: Pocket Full of Flowers">
+                <div class="glass p-card-inner" data-tilt="10">
+                  <div class="p-thumb"><img src="./assets/Projects/project-5.png" alt="Pocket Full of Flowers project" loading="lazy" /><span class="p-num">05</span></div>
+                  <h3>Pocket Full of Flowers</h3>
+                  <div class="p-actions">
+                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan/pocketfulflower" target="_blank" rel="noopener">GitHub</a>
+                    <a class="btn btn-sm btn-solid" href="https://pocketfullofflowers.vercel.app/" target="_blank" rel="noopener">Live Demo</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card" aria-label="Project 6 of 9: Python Password Generator">
+                <div class="glass p-card-inner" data-tilt="10">
+                  <div class="p-thumb"><img src="./assets/Projects/project-4.png" alt="Python Password Generator project" loading="lazy" /><span class="p-num">06</span></div>
+                  <h3>Python Password Generator</h3>
+                  <div class="p-actions">
+                    <a class="btn btn-sm btn-ghost" href="https://github.com/Thefaizanhassan/PythonPasswordGenerator" target="_blank" rel="noopener">GitHub</a>
+                    <a class="btn btn-sm btn-solid" href="./projects/pythonPasswordGenerator/index.html" target="_blank" rel="noopener">View Code</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card" aria-label="Project 7 of 9: Automated Email">
+                <div class="glass p-card-inner" data-tilt="10">
+                  <div class="p-thumb"><img src="./assets/Projects/project-1.png" alt="Automated Email project" loading="lazy" /><span class="p-num">07</span></div>
+                  <h3>Automated Email</h3>
+                  <div class="p-actions">
+                    <a class="btn btn-sm btn-solid" href="https://github.com/Thefaizanhassan/Automated-Email-Trigger-App" target="_blank" rel="noopener">GitHub</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card" aria-label="Project 8 of 9: Tic Tac Toe">
+                <div class="glass p-card-inner" data-tilt="10">
+                  <div class="p-thumb"><img src="./assets/Projects/project-2.png" alt="Tic Tac Toe project" loading="lazy" /><span class="p-num">08</span></div>
+                  <h3>Tic Tac Toe</h3>
+                  <div class="p-actions">
+                    <a class="btn btn-sm btn-solid" href="https://github.com/Thefaizanhassan/TicTacToe" target="_blank" rel="noopener">GitHub</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="p-card" aria-label="Project 9 of 9: Generate Shark Image">
+                <div class="glass p-card-inner" data-tilt="10">
+                  <div class="p-thumb"><img src="./assets/Projects/project-3.png" alt="Generate Shark Image project" loading="lazy" /><span class="p-num">09</span></div>
+                  <h3>Generate Shark Image</h3>
+                  <div class="p-actions">
+                    <a class="btn btn-sm btn-solid" href="https://drive.google.com/file/d/17A6caimnUNpC94hL9rWfe5YRFMzUyGSH/view?usp=sharing" target="_blank" rel="noopener">Google Drive</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="carousel-ui">
+              <button type="button" class="arrow-btn" data-dir="-1" aria-label="Previous project">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div class="dots" role="group" aria-label="Choose a project"></div>
+              <span class="counter" aria-live="polite">01 / 09</span>
+              <button type="button" class="arrow-btn" data-dir="1" aria-label="Next project">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= WATCH LIST ================= -->
+      <section id="watchlist" class="block">
+        <div class="container">
+          <header class="sec-head reveal">
+            <p class="eyebrow">What I'm Learning</p>
+            <h2 class="sec-title">Watch List</h2>
+          </header>
+
+          <div class="watch-grid">
+            <!-- Course 1 -->
+            <div class="flip reveal">
+              <div class="flip-inner">
+                <article class="flip-face flip-front">
+                  <a class="thumb-link" href="https://www.youtube.com/watch?v=pTFZFxd4hOI" target="_blank" rel="noopener" aria-label="Watch Docker Tutorial for Beginners on YouTube">
+                    <img src="https://img.youtube.com/vi/pTFZFxd4hOI/maxresdefault.jpg" alt="Docker Tutorial for Beginners thumbnail" loading="lazy" />
+                    <span class="play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
+                  </a>
+                  <div class="body">
+                    <h3>Docker Tutorial for Beginners</h3>
+                    <p>This beginner-friendly tutorial covers the essentials for software and DevOps engineers.</p>
+                    <div class="chips"><span class="chip"><strong>Duration:</strong> 1 hr</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
+                    <button type="button" class="btn btn-sm btn-ghost" data-flip style="margin-top: 1.2rem">Course Details ↻</button>
+                  </div>
+                </article>
+                <article class="flip-face flip-back">
+                  <div class="back-head">
+                    <h3>Course Details</h3>
+                    <button type="button" class="btn btn-sm btn-ghost" data-flip>← Back</button>
+                  </div>
+                  <div class="back-meta"><span class="chip"><strong>Duration:</strong> 1 hr</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
+                  <p class="topics-label">Topics Covered</p>
+                  <ul class="topics">
+                    <li>Docker Essentials & Core Concepts</li>
+                    <li>Container Creation and Management</li>
+                    <li>Working with Docker Images</li>
+                    <li>Building and Using Dockerfiles</li>
+                    <li>Container Networking Basics</li>
+                    <li>Docker Compose Fundamentals</li>
+                  </ul>
+                  <p class="course-desc">Master Docker from scratch with this beginner-friendly tutorial. Learn all the essentials to effectively use containers, aimed at boosting the skills of aspiring and current software and DevOps engineers.</p>
+                  <div class="back-actions"><a class="btn btn-sm btn-solid" href="https://www.youtube.com/watch?v=pTFZFxd4hOI" target="_blank" rel="noopener">▶ Watch on YouTube</a></div>
+                </article>
+              </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="flip reveal" style="--d: 0.08s">
+              <div class="flip-inner">
+                <article class="flip-face flip-front">
+                  <a class="thumb-link" href="https://www.youtube.com/watch?v=IPvYjXCsTg8" target="_blank" rel="noopener" aria-label="Watch Computer Networking Full Course on YouTube">
+                    <img src="https://img.youtube.com/vi/IPvYjXCsTg8/maxresdefault.jpg" alt="Computer Networking Full Course thumbnail" loading="lazy" />
+                    <span class="play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
+                  </a>
+                  <div class="body">
+                    <h3>Computer Networking Full Course</h3>
+                    <p>A deep dive into the OSI model with real-life examples.</p>
+                    <div class="chips"><span class="chip"><strong>Duration:</strong> 4 hr 6 min</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
+                    <button type="button" class="btn btn-sm btn-ghost" data-flip style="margin-top: 1.2rem">Course Details ↻</button>
+                  </div>
+                </article>
+                <article class="flip-face flip-back">
+                  <div class="back-head">
+                    <h3>Course Details</h3>
+                    <button type="button" class="btn btn-sm btn-ghost" data-flip>← Back</button>
+                  </div>
+                  <div class="back-meta"><span class="chip"><strong>Duration:</strong> 4 hr 6 min</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
+                  <p class="topics-label">Topics Covered</p>
+                  <ul class="topics">
+                    <li>Client-Server Architecture</li>
+                    <li>Protocols</li>
+                    <li>How Data is Transferred? IP Address</li>
+                    <li>Port Numbers</li>
+                    <li>Submarine Cables Map (Optical Fibre Cables)</li>
+                    <li>LAN, MAN, WAN</li>
+                    <li>MODEM, ROUTER</li>
+                    <li>Topologies (BUS, RING, STAR, TREE, MESH)</li>
+                    <li>Structure of the Network</li>
+                    <li>OSI Model (7 Layers)</li>
+                    <li>TCP/IP Model (5 Layers)</li>
+                    <li>Peer to Peer Architecture</li>
+                    <li>Networking Devices (Download PDF)</li>
+                    <li>Sockets</li>
+                    <li>Ports</li>
+                    <li>HTTP</li>
+                    <li>HTTP(GET, POST, PUT, DELETE)</li>
+                    <li>Error/Status Codes</li>
+                    <li>Cookies</li>
+                    <li>How Email Works?</li>
+                    <li>DNS (Domain Name System)</li>
+                    <li>TCP/IP Model (Transport Layer)</li>
+                    <li>Checksum</li>
+                    <li>Timers</li>
+                    <li>UDP (User Datagram Protocol)</li>
+                    <li>TCP (Transmission Control Protocol)</li>
+                    <li>3-Way handshake</li>
+                    <li>TCP (Network Layer)</li>
+                    <li>Control Plane</li>
+                    <li>IP (Internet Protocol)</li>
+                    <li>Packets</li>
+                    <li>IPV4 vs IPV6</li>
+                    <li>Middle Boxes</li>
+                    <li>(NAT) Network Address Translation</li>
+                    <li>TCP (Data Link Layer)</li>
+                  </ul>
+                  <p class="course-desc">A comprehensive, beginner-friendly series designed to provide a deep dive into how the internet and data communication work. It is part of a larger DevOps Bootcamp but serves as a standalone resource for students and professionals.</p>
+                  <div class="back-actions"><a class="btn btn-sm btn-solid" href="https://www.youtube.com/watch?v=IPvYjXCsTg8" target="_blank" rel="noopener">▶ Watch on YouTube</a></div>
+                </article>
+              </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="flip reveal" style="--d: 0.16s">
+              <div class="flip-inner">
+                <article class="flip-face flip-front">
+                  <a class="thumb-link" href="https://www.youtube.com/watch?v=7S_tz1z_5bA" target="_blank" rel="noopener" aria-label="Watch SQL Course for Beginners on YouTube">
+                    <img src="https://img.youtube.com/vi/7S_tz1z_5bA/maxresdefault.jpg" alt="SQL Course for Beginners thumbnail" loading="lazy" />
+                    <span class="play" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span>
+                  </a>
+                  <div class="body">
+                    <h3>SQL Course for Beginners</h3>
+                    <p>This beginner-friendly course teaches you SQL from scratch.</p>
+                    <div class="chips"><span class="chip"><strong>Duration:</strong> 3 hr 10 min</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
+                    <button type="button" class="btn btn-sm btn-ghost" data-flip style="margin-top: 1.2rem">Course Details ↻</button>
+                  </div>
+                </article>
+                <article class="flip-face flip-back">
+                  <div class="back-head">
+                    <h3>Course Details</h3>
+                    <button type="button" class="btn btn-sm btn-ghost" data-flip>← Back</button>
+                  </div>
+                  <div class="back-meta"><span class="chip"><strong>Duration:</strong> 3 hr 10 min</span><span class="chip"><strong>Level:</strong> Beginner</span></div>
+                  <p class="topics-label">Topics Covered</p>
+                  <ul class="topics">
+                    <li>What is SQL?</li>
+                    <li>Installing MySQL</li>
+                    <li>The SELECT Statement</li>
+                    <li>The SELECT Clause</li>
+                    <li>The WHERE Clause</li>
+                    <li>The AND, OR, and NOT Operators</li>
+                    <li>The IN Operator</li>
+                    <li>The BETWEEN Operator</li>
+                    <li>The LIKE Operator</li>
+                    <li>The REGEXP Operator</li>
+                    <li>The IS NULL Operator</li>
+                    <li>The ORDER BY Operator</li>
+                    <li>The LIMIT Operator</li>
+                    <li>Inner Joins</li>
+                    <li>Joining Across Databases</li>
+                    <li>Self Joins</li>
+                    <li>Joining Multiple Tables</li>
+                    <li>Compound Join Conditions</li>
+                    <li>Implicit Join Syntax</li>
+                    <li>Outer Joins</li>
+                    <li>Outer Join Between Multiple Tables</li>
+                    <li>Self Outer Joins</li>
+                    <li>The USING Clause</li>
+                    <li>Natural Joins</li>
+                    <li>Cross Joins</li>
+                    <li>Unions</li>
+                    <li>Column Attributes</li>
+                    <li>Inserting a Single Row</li>
+                    <li>Inserting Multiple Rows</li>
+                    <li>Inserting Hierarchical Rows</li>
+                    <li>Creating a Copy of a Table</li>
+                    <li>Updating a Single Row</li>
+                    <li>Updating Multiple Rows</li>
+                    <li>Using Subqueries in Updates</li>
+                    <li>Deleting Rows</li>
+                    <li>Restoring Course Databases</li>
+                  </ul>
+                  <p class="course-desc">This tutorial is perfect for you if you're completely new to SQL, want a practical, hands-on approach or want to work with data.</p>
+                  <div class="back-actions"><a class="btn btn-sm btn-solid" href="https://www.youtube.com/watch?v=7S_tz1z_5bA" target="_blank" rel="noopener">▶ Watch on YouTube</a></div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTACT ================= -->
+      <section id="contact" class="block">
+        <div class="container">
+          <header class="sec-head reveal">
+            <p class="eyebrow">Get in Touch</p>
+            <h2 class="sec-title">Contact Me</h2>
+          </header>
+
+          <div class="reveal">
+            <div class="glass contact-card" data-tilt="5">
+              <div class="contact-links pop">
+                <a class="contact-link" href="mailto:thefaizanhassan@gmail.com">
+                  <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                  <div><small>Email</small><span class="val">thefaizanhassan@gmail.com</span></div>
+                </a>
+                <a class="contact-link" href="https://www.linkedin.com/in/thefaizanhassan/" target="_blank" rel="noopener">
+                  <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></span>
+                  <div><small>LinkedIn</small><span class="val">thefaizanhassan</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="container">
+        <div class="glass foot">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#watchlist">Watch List</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <p>Copyright &#169; <span id="year">2026</span> Faizan Hassan. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Dark Mode Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <span class="theme-icon" aria-hidden="true">🌙</span>
+    </button>
+
+  </body>
+</html>
