@@ -540,9 +540,10 @@ main { overflow-x: hidden; overflow-x: clip; }
 /* =====================================================================
    SECTIONS
    ===================================================================== */
-section.block { padding: clamp(80px, 12vw, 140px) 0; position: relative; }
+/* Compact vertical rhythm: sections sit close together to keep the page short */
+section.block { padding: clamp(40px, 5vw, 64px) 0; position: relative; }
 
-.sec-head { text-align: center; margin-bottom: clamp(2.8rem, 6vw, 4.5rem); }
+.sec-head { text-align: center; margin-bottom: clamp(1.6rem, 3.5vw, 2.6rem); }
 
 .sec-title {
   font-size: clamp(2.5rem, 6vw, 4.2rem);
@@ -629,6 +630,55 @@ section.block { padding: clamp(80px, 12vw, 140px) 0; position: relative; }
 
 .about-text p { font-size: 1rem; line-height: 1.8; color: var(--text); text-align: justify; }
 
+/* ---------- Experience: internship card ---------- */
+.xp-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.2rem 2.4rem 2.4rem;
+}
+
+.xp-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem 1.4rem;
+  padding-bottom: 1.4rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.xp-head .stat-icon { margin: 0; }
+
+.xp-role { font-size: clamp(1.2rem, 2.2vw, 1.5rem); font-weight: 700; line-height: 1.3; color: var(--ink); margin-top: 0.25rem; }
+.xp-org { font-size: 0.98rem; font-weight: 600; color: var(--muted); margin-top: 0.15rem; }
+
+.xp-meta { margin: 0; justify-content: flex-end; }
+
+.xp-points li {
+  position: relative;
+  padding: 0.75rem 0 0.75rem 1.5rem;
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: var(--text);
+  border-bottom: 1px dashed var(--line);
+}
+
+.xp-points li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 1.4rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.xp-stack { margin-top: 1.6rem; }
+.xp-stack .chips { margin-top: 0; }
+
+.xp-actions { margin-top: 2rem; }
+
 /* ---------- Skills ---------- */
 .skills-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem; }
 
@@ -676,31 +726,50 @@ section.block { padding: clamp(80px, 12vw, 140px) 0; position: relative; }
 .meter[data-level="2"] i:nth-child(-n + 2),
 .meter[data-level="3"] i:nth-child(-n + 3) { background: var(--ink); }
 
-/* ---------- Projects: 3D coverflow ---------- */
-.carousel { position: relative; outline: none; }
+/* ---------- Projects: a 3D coverflow that scrolls sideways ---------- */
+/* .carousel-stage is a full-width sideways scroller that snaps a card to the middle, so it moves with
+   a trackpad, touch, the scrollbar, the arrow keys, the buttons and the dots. As it scrolls,
+   js/main.js turns each card and sinks it back by its distance from the middle. */
+.carousel { position: relative; }
 
 .carousel-stage {
-  --cw: 330px;
-  position: relative;
-  height: 560px;
-  perspective: 1800px;
-  transform-style: preserve-3d;
-  touch-action: pan-y;
+  --cw: 330px; /* card width */
+  --fan: 0.8;  /* neighbouring cards sit this many card widths apart, tucked behind the middle one */
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
   cursor: grab;
+  -webkit-user-select: none;
   user-select: none;
 }
 
 .carousel-stage.dragging { cursor: grabbing; }
 
-.p-card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: var(--cw);
-  transform-style: preserve-3d;
-  transition: transform 0.85s var(--ease), opacity 0.6s ease;
-  will-change: transform;
+.carousel-track {
+  position: relative; /* the cards' offsetLeft is measured from here */
+  display: flex;
+  align-items: center;
+  width: max-content;
+  /* The side padding lets the first and last cards reach the middle; above and below is room
+     for the hover tilt and the shadows */
+  padding: 14px calc(50% - var(--cw) / 2) 44px;
 }
+
+.p-card {
+  flex: none;
+  width: var(--cw);
+  scroll-snap-align: center; /* the list item itself never moves, so the snap points stay put */
+  pointer-events: none;      /* clicks go to the turned card inside, not the box it started from */
+}
+
+.p-card-3d {
+  transform-style: preserve-3d;
+  will-change: transform;
+  pointer-events: auto;
+}
+
+.p-card + .p-card { margin-left: calc(var(--cw) * (var(--fan) - 1)); } /* negative: the cards overlap */
 
 .p-card-inner { padding: 16px 16px 22px; cursor: pointer; }
 .p-card.is-active .p-card-inner { cursor: default; }
@@ -753,8 +822,12 @@ section.block { padding: clamp(80px, 12vw, 140px) 0; position: relative; }
   align-items: center;
   justify-content: center;
   gap: 1.4rem;
-  margin-top: 1rem;
+  margin-top: -0.4rem;
+  padding-inline: 16px;
 }
+
+.carousel-ui[hidden] { display: none; }
+.carousel-ui .arrow-btn { flex: none; } /* never squeezed by a long row of dots */
 
 .arrow-btn {
   width: 54px;
@@ -772,8 +845,9 @@ section.block { padding: clamp(80px, 12vw, 140px) 0; position: relative; }
 .arrow-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--key); }
 .arrow-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--key); }
 .arrow-btn svg { width: 20px; height: 20px; }
+.arrow-btn[aria-disabled="true"] { opacity: 0.35; cursor: default; transform: none; box-shadow: 0 5px 0 var(--key); }
 
-.dots { display: flex; gap: 8px; }
+.dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; min-width: 0; }
 
 .dots button {
   width: 10px;
@@ -796,12 +870,112 @@ section.block { padding: clamp(80px, 12vw, 140px) 0; position: relative; }
   text-align: center;
 }
 
-/* ---------- Watch list: flip cards ---------- */
-.watch-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+/* ---------- Sideways-scrolling rows: Certifications and Watch List ---------- */
+/* A full-width row. Its padding lines the first card up with .container and lets the cards run off
+   the right edge. It scrolls with a trackpad, touch, the scrollbar, the arrow keys once focused, or
+   the arrow buttons below it (js/sections.js). */
+.h-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: max(24px, calc((100% - 1180px) / 2));
 }
+
+/* Scrollbar and focus ring of every sideways scroller, the Projects coverflow included */
+.h-scroll, .carousel-stage { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+.h-scroll:focus-visible, .carousel-stage:focus-visible { outline-offset: -2px; }
+.h-scroll::-webkit-scrollbar, .carousel-stage::-webkit-scrollbar { height: 8px; }
+.h-scroll::-webkit-scrollbar-track, .carousel-stage::-webkit-scrollbar-track { background: transparent; }
+.h-scroll::-webkit-scrollbar-thumb, .carousel-stage::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 10px; }
+
+.h-track {
+  --card-w: min(350px, 78vw);
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  padding: 1rem max(24px, calc((100% - 1180px) / 2)) 3.4rem; /* room for tilt, shadows and flips */
+}
+
+.h-track > li {
+  flex: 0 0 auto;
+  width: var(--card-w);
+  scroll-snap-align: start;
+}
+
+.scroll-ui { display: flex; justify-content: center; gap: 1.4rem; margin-top: -0.6rem; }
+.scroll-ui[hidden] { display: none; }
+
+/* ---------- Certifications: cards built from js/data/certifications.js ---------- */
+.cert-track > li { display: flex; } /* every card in the row is as tall as the tallest */
+
+.cert-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 20px;
+}
+
+/* A-size landscape, the shape of most certificates (two classes, to outrank .thumb-link's 16:10) */
+.thumb-link.cert-thumb { aspect-ratio: 1.414; }
+.cert-thumb .play svg { margin-left: 0; }
+
+.cert-body { display: flex; flex-direction: column; flex: 1; padding: 1.2rem 0.5rem 0.2rem; }
+.cert-body h3 { font-size: 1.2rem; font-weight: 700; line-height: 1.3; color: var(--ink); margin-top: 0.35rem; }
+.cert-body .chips { margin: 0.8rem 0 1.3rem; }
+.cert-id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.02em; }
+.cert-actions { margin-top: auto; display: flex; gap: 0.7rem; }
+
+.noscript-note { text-align: center; color: var(--muted); }
+
+/* ---------- Core subjects: marquee built from js/data/subjects.js ---------- */
+/* A slim band: the section is a single row, so it gets far less padding than a full section, and
+   the sections either side of it close up on it too */
+section.block.block-slim { padding: clamp(8px, 1.5vw, 16px) 0 clamp(24px, 3vw, 40px); }
+section.block:has(+ section.block-slim) { padding-bottom: clamp(24px, 3vw, 40px); }
+section.block-slim + section.block { padding-top: clamp(32px, 4vw, 48px); }
+.block-slim .sec-head { margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem); }
+
+/* Two identical groups slide left by exactly one group, so the loop has no seam. Each group is
+   at least as wide as the screen, so even a short list never leaves a gap. */
+.marquee {
+  --gap: 1.1rem;
+  --marquee-duration: 40s; /* set by js/sections.js from the number of subjects */
+  display: flex;
+  gap: var(--gap);
+  overflow: hidden;
+  padding: 0.8rem 0 1.4rem; /* room for the buttons' pressed-key shadow */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+
+.marquee.is-focused { -webkit-mask-image: none; mask-image: none; }
+
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--gap);
+  min-width: 100%;
+  justify-content: space-around;
+  animation: marquee var(--marquee-duration) linear infinite;
+}
+
+.marquee:hover .marquee-group,
+.marquee:focus-within .marquee-group,
+.marquee.is-paused .marquee-group { animation-play-state: paused; }
+
+@keyframes marquee { to { transform: translateX(calc(-100% - var(--gap))); } }
+
+.subject-pill { font-size: 0.95rem; padding: 1rem 1.5rem; }
+
+.marquee-ui { display: flex; justify-content: center; margin-top: 0.3rem; }
+
+.marquee-toggle .i-play,
+.marquee-toggle[aria-pressed="true"] .i-pause { display: none; }
+.marquee-toggle[aria-pressed="true"] .i-play { display: block; }
+
+/* ---------- Watch list: flip cards built from js/data/watchlist.js, in a sideways row ---------- */
+.watch-track { --card-w: min(350px, 84vw); } /* a little wider on phones: the backs hold long topic lists */
 
 .flip { perspective: 1600px; height: 520px; }
 
@@ -986,7 +1160,7 @@ section.block { padding: clamp(80px, 12vw, 140px) 0; position: relative; }
 .contact-link > div { min-width: 0; }
 
 /* ---------- Footer ---------- */
-footer { padding: 3rem 0 3.5rem; }
+footer { padding: 1.5rem 0 2.5rem; }
 
 .foot {
   display: flex;
@@ -1027,14 +1201,8 @@ footer { padding: 3rem 0 3.5rem; }
 /* =====================================================================
    RESPONSIVE
    ===================================================================== */
-@media (max-width: 1000px) {
-  .skills-grid { grid-template-columns: minmax(0, 1fr); }
-  .about-grid { grid-template-columns: minmax(0, 1fr); }
-  .stack { width: min(100%, 360px); }
-}
-
-@media (max-width: 860px) {
-  :root { --nav-h: 70px; }
+/* The eight nav links need about 1060px, so below 1100px they move into the menu */
+@media (max-width: 1100px) {
   .nav { padding: 0 8px 0 20px; }
   .nav::before { opacity: 1; }
   .nav { border-color: var(--glass-edge); }
@@ -1054,6 +1222,8 @@ footer { padding: 3rem 0 3.5rem; }
     -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
     box-shadow: var(--shadow);
+    max-height: calc(100vh - var(--nav-h) - 24px); /* scrolls on short screens, e.g. a phone held sideways */
+    overflow-y: auto;
     transform-origin: top right;
     transform: perspective(600px) rotateX(-18deg) scale(0.96);
     opacity: 0;
@@ -1063,6 +1233,16 @@ footer { padding: 3rem 0 3.5rem; }
 
   .nav.open > .nav-links { transform: none; opacity: 1; visibility: visible; }
   .nav > .nav-links a { font-size: 1.05rem; padding: 0.75rem 1.1rem; }
+}
+
+@media (max-width: 1000px) {
+  .skills-grid { grid-template-columns: minmax(0, 1fr); }
+  .about-grid { grid-template-columns: minmax(0, 1fr); }
+  .stack { width: min(100%, 360px); }
+}
+
+@media (max-width: 860px) {
+  :root { --nav-h: 70px; }
 
   .hero { padding-top: calc(var(--nav-h) + 40px); text-align: center; }
   .hero-grid { grid-template-columns: 1fr; gap: 2.6rem; }
@@ -1072,6 +1252,10 @@ footer { padding: 3rem 0 3.5rem; }
   .prism span::before { display: none; }
   .btn-row, .socials { justify-content: center; }
   .scroll-cue { display: none; }
+
+  .xp-head { grid-template-columns: auto minmax(0, 1fr); }
+  .xp-meta { grid-column: 1 / -1; justify-content: flex-start; }
+  .xp-actions { justify-content: flex-start; }
 }
 
 @media (max-width: 640px) {
@@ -1082,11 +1266,17 @@ footer { padding: 3rem 0 3.5rem; }
   .skill { padding: 0.8rem 0.8rem; }
   .about-text { padding: 1.5rem 1.3rem; }
   .about-text p { text-align: left; }
-  .carousel-stage { --cw: min(76vw, 300px); height: 510px; }
+  .carousel-stage { --cw: min(76vw, 300px); --fan: 0.6; }
+  .dots { display: none; } /* the counter says where you are; the dots would not fit */
   .contact-links { grid-template-columns: 1fr; }
   .flip { height: 540px; }
   .btn { min-width: 8.5rem; padding: 0.9rem 1.2rem; }
   .theme-toggle { width: 50px; height: 50px; right: 1.5rem; bottom: 1.5rem; font-size: 1.5rem; }
+  .xp-card { padding: 1.6rem 1.3rem 1.8rem; }
+  .xp-points li { font-size: 0.93rem; }
+  .xp-actions .btn { flex: 1 1 12rem; }
+  .h-track { gap: 1.2rem; padding-inline: 16px; }
+  .h-scroll { scroll-padding-inline: 16px; }
 }
 
 @media (max-width: 420px) {
@@ -1098,4 +1288,9 @@ footer { padding: 3rem 0 3.5rem; }
   .prism, .mouse::after { animation: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   [data-tilt] { transform: none !important; }
+
+  /* The subjects stand still as a centred, wrapping row */
+  .marquee { -webkit-mask-image: none; mask-image: none; padding-inline: 16px; }
+  .marquee-group { animation: none; min-width: 0; flex: 1; flex-wrap: wrap; justify-content: center; }
+  .marquee-group[aria-hidden="true"], .marquee-ui { display: none; }
 }

@@ -1,5 +1,5 @@
 let input = document.getElementById('inputBox');
-let buttons = document.querySelectorAll('button');
+let buttons = document.querySelectorAll('.calculator button');
 
 let string = "";
 let arr = Array.from(buttons);
@@ -50,6 +50,9 @@ arr.forEach(button => {
 // Keyboard support
 document.addEventListener('keydown', (e) => {
     const key = e.key;
+
+    // Leave keys alone while a link or the theme button (outside the calculator) has focus
+    if (e.target.closest && e.target.closest('a, button') && !e.target.closest('.calculator')) return;
     
     // Prevent default for calculator keys
     if (['Enter', 'Escape', '='].includes(key)) {
@@ -94,15 +97,6 @@ document.addEventListener('keydown', (e) => {
         string = "";
         input.value = "0";
     }
-});
-
-// Add visual feedback on input focus
-input.addEventListener('focus', () => {
-    input.style.boxShadow = 'inset 0px 3px 15px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(251, 124, 20, 0.3)';
-});
-
-input.addEventListener('blur', () => {
-    input.style.boxShadow = 'inset 0px 3px 15px rgba(0, 0, 0, 0.3)';
 });
 
 // Initialize display
