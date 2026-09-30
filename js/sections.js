@@ -51,7 +51,7 @@
   const NEW_TAB = " (opens in a new tab)";
 
   // ---------- Projects: one coverflow card per entry in js/data/projects.js ----------
-  // main.js then gives the row its 3D coverflow look, dots, counter and arrow buttons.
+  // main.js then gives the row its 3D coverflow look, its loop, dots, counter and arrow buttons.
   function projectCard(project, index) {
     const links = Array.isArray(project.links) ? project.links.filter((link) => link && link.label && link.url) : [];
     return el("li", { class: "p-card" },
@@ -78,9 +78,28 @@
 
   const projectTrack = document.querySelector("[data-projects]");
   if (projectTrack && typeof projects !== "undefined" && Array.isArray(projects)) {
-    projects
+    const cards = projects
       .filter((project) => project && project.title)
-      .forEach((project, index) => projectTrack.append(projectCard(project, index)));
+      .map((project, index) => projectCard(project, index));
+    projectTrack.append(...cards);
+
+    // The coverflow goes round in a circle. Whole copies of the list sit either side of the real
+    // cards, so a scroll runs on past the last project into the first; main.js hops back to the real
+    // cards whenever a scroll comes to rest. Screen readers and the Tab key only see the real cards.
+    if (cards.length > 1) {
+      const copies = Math.max(2, Math.ceil(12 / cards.length)); // on each side: at least 12 cards
+      const copy = () => cards.map((card) => {
+        const clone = card.cloneNode(true);
+        clone.classList.add("p-clone");
+        clone.setAttribute("aria-hidden", "true");
+        clone.querySelectorAll("a, button").forEach((link) => { link.tabIndex = -1; });
+        return clone;
+      });
+      for (let i = 0; i < copies; i++) {
+        projectTrack.prepend(...copy());
+        projectTrack.append(...copy());
+      }
+    }
   }
 
   // ---------- Certifications: one card per entry in js/data/certifications.js ----------

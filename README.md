@@ -31,15 +31,16 @@ The page is one long scroll. In order:
 2. **About**: a particle portrait (three.js), experience and education cards, and a short bio
 3. **Experience**: my internship at Konkuwan Herbs, with the GitHub repository and the project report
 4. **Skills**
-5. **Projects**: a 3D coverflow of my projects, built from a data file
+5. **Projects**: a 3D coverflow of my projects that scrolls sideways round in a circle, built from a
+   data file
 6. **Certifications**: a sideways-scrolling row with one card per certificate, built from a data file
 7. **Watch List**: a sideways-scrolling row of flip cards for courses I'm learning from, built from a
    data file
 8. **Core Subjects**: a moving row of links to my study notes, built from a data file
 9. **Contact**
 
-Light and dark themes are remembered in `localStorage` under the key `theme`, and the notes pages share
-that setting. Motion respects the visitor's *reduce motion* setting, and the Core Subjects row has a
+Light and dark themes are remembered in `localStorage` under the key `theme`, and the notes pages and
+project demo pages share that setting. Motion respects the visitor's *reduce motion* setting, and the Core Subjects row has a
 pause button.
 
 ---
@@ -76,15 +77,25 @@ pause button.
 │   ├── notes-theme.js            # Applies the shared theme; adds the Home and theme buttons
 │   ├── _template.html            # Starting point for a new notes page (not published)
 │   └── <subject>.html            # One page per Core Subject, e.g. operating-systems.html
-└── projects/                     # Live demos linked from the Projects section
+└── projects/                     # Demo pages linked from the Projects section
+    ├── project-page.css          # Shared frame of every demo page: top bar, heading, "built with" chips
+    ├── project-page.js           # Applies the shared theme and runs the theme button
+    ├── calculator/               # index.html, style.css, script.js
+    └── pythonPasswordGenerator/  # index.html, style.css
 ```
 
 `js/sections.js` loads just before `js/main.js`, so the cards it builds get the same carousel, scroll
 reveal, tilt and card flipping as the rest of the page. Keep that order in `index.html`.
 
-The Certifications and Watch List rows scroll sideways with a trackpad, touch, the scrollbar, or the
-arrow keys once focused. Their arrow buttons appear by themselves whenever the cards don't all fit on
-screen.
+The Projects coverflow and the Certifications and Watch List rows all scroll sideways with a trackpad,
+touch, or the arrow keys once focused; the two rows also have a scrollbar.
+
+- **Projects** goes round in a circle: after the last project comes the first again, in both
+  directions. `js/sections.js` puts copies of the cards either side of the real ones (hidden from
+  screen readers and the Tab key), and `js/main.js` hops back to the real cards whenever a scroll comes
+  to rest. It also has arrow buttons, dots (hidden on phones) and a counter.
+- **Certifications and Watch List** have a start and an end. Their arrow buttons appear by themselves
+  whenever the cards don't all fit on screen.
 
 ---
 
@@ -103,6 +114,9 @@ JavaScript, and the files in this repository are exactly what gets served. Nothi
 
   Then open <http://localhost:8000>.
 
+If an edit doesn't show up, hard-reload the page (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> on a Mac,
+<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> elsewhere): browsers can keep an older copy of a CSS or JS file.
+
 **Deploying:** GitHub Pages publishes this repository. Push to `main`, and
 https://thefaizanhassan.github.io/ updates within a minute or two.
 
@@ -110,7 +124,8 @@ https://thefaizanhassan.github.io/ updates within a minute or two.
 
 ## 🚀 Adding a project
 
-Only the data file changes. The carousel numbers the cards, and builds its dots and counter, by itself.
+Only the data file changes. The carousel numbers the cards, and builds its dots, counter and loop, by
+itself.
 
 1. Put a screenshot in `assets/Projects/`. Square images fit the card best.
 2. Add an object to the `projects` list in `js/data/projects.js`:
@@ -131,8 +146,26 @@ Only the data file changes. The carousel numbers the cards, and builds its dots 
   button and any before it are outlined, so a project with only a GitHub link gets one solid button.
   Every link opens in a new tab.
 - **Local demos:** a demo kept in this repository is linked by its path, e.g.
-  `"./projects/calculator/index.html"`.
+  `"./projects/calculator/index.html"`. See [Adding a demo page](#adding-a-demo-page) below.
 - **Order:** the cards appear in the order of the list. The first one starts in front.
+
+### Adding a demo page
+
+A demo that runs on this site gets its own folder, e.g. `projects/weather-dashboard/`, and looks like
+the portfolio: the same colours in both themes, the contour background, the glass top bar and the
+theme button.
+
+1. Copy `projects/calculator/index.html` into the new folder. Keep its `<head>` (the favicon,
+   `../project-page.js`, the fonts, `../../css/style.css`, `../project-page.css` and
+   `../../js/background.js`), the top bar, the heading, the footer and the theme button. Change the
+   title, the description, the GitHub link and the "Built with" chips.
+2. Replace the calculator with the demo, and put its styles in the folder's own `style.css`. Use the
+   portfolio's colour tokens (`var(--ink)`, `var(--text)`, `var(--glass-hi)`, `var(--accent)`, …) so it
+   works in light and dark mode.
+3. Keep the demo's scripts to its own elements, e.g. `document.querySelectorAll(".calculator button")`
+   rather than every `button`, because the page also has the theme button.
+4. Link it from the project's entry in `js/data/projects.js`, e.g.
+   `{ label: "Live Demo", url: "./projects/weather-dashboard/index.html" }`.
 
 ---
 
@@ -262,6 +295,7 @@ In practice:
   `prefers-reduced-motion` block, rather than making new ones.
 - **New sections** get a link in both the top navigation and the footer.
 - **Notes pages** follow the same rule, through `../css/style.css` and `notes/notes-theme.css`.
+- **Project demo pages** follow it too, through `../../css/style.css` and `projects/project-page.css`.
 
 ---
 

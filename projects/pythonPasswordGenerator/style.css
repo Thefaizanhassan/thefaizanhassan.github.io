@@ -60,7 +60,7 @@ pre code {
   color: var(--text);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .code-header { flex-wrap: wrap; }
   .code-label { flex-basis: 100%; }
   .copy-button { flex: 1; }

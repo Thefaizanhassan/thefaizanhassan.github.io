@@ -728,8 +728,9 @@ section.block { padding: clamp(40px, 5vw, 64px) 0; position: relative; }
 
 /* ---------- Projects: a 3D coverflow that scrolls sideways ---------- */
 /* .carousel-stage is a full-width sideways scroller that snaps a card to the middle, so it moves with
-   a trackpad, touch, the scrollbar, the arrow keys, the buttons and the dots. As it scrolls,
-   js/main.js turns each card and sinks it back by its distance from the middle. */
+   a trackpad, touch, the arrow keys, the buttons and the dots. As it scrolls,
+   js/main.js turns each card and sinks it back by its distance from the middle, and keeps it going
+   round in a circle (js/sections.js adds copies of the cards either side). */
 .carousel { position: relative; }
 
 .carousel-stage {
@@ -739,11 +740,13 @@ section.block { padding: clamp(40px, 5vw, 64px) 0; position: relative; }
   overflow-y: hidden;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
   cursor: grab;
   -webkit-user-select: none;
   user-select: none;
 }
 
+.carousel-stage::-webkit-scrollbar { display: none; }
 .carousel-stage.dragging { cursor: grabbing; }
 
 .carousel-track {
@@ -765,7 +768,6 @@ section.block { padding: clamp(40px, 5vw, 64px) 0; position: relative; }
 
 .p-card-3d {
   transform-style: preserve-3d;
-  will-change: transform;
   pointer-events: auto;
 }
 
@@ -882,12 +884,13 @@ section.block { padding: clamp(40px, 5vw, 64px) 0; position: relative; }
   scroll-padding-inline: max(24px, calc((100% - 1180px) / 2));
 }
 
-/* Scrollbar and focus ring of every sideways scroller, the Projects coverflow included */
-.h-scroll, .carousel-stage { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+/* Scrollbars and focus rings of the sideways scrollers. The Projects coverflow goes round in a
+   circle, so it has no scrollbar: there is no start or end for one to show. */
+.h-scroll { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
 .h-scroll:focus-visible, .carousel-stage:focus-visible { outline-offset: -2px; }
-.h-scroll::-webkit-scrollbar, .carousel-stage::-webkit-scrollbar { height: 8px; }
-.h-scroll::-webkit-scrollbar-track, .carousel-stage::-webkit-scrollbar-track { background: transparent; }
-.h-scroll::-webkit-scrollbar-thumb, .carousel-stage::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 10px; }
+.h-scroll::-webkit-scrollbar { height: 8px; }
+.h-scroll::-webkit-scrollbar-track { background: transparent; }
+.h-scroll::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 10px; }
 
 .h-track {
   --card-w: min(350px, 78vw);

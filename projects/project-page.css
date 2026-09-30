@@ -6,7 +6,8 @@
    ========================================================================== */
 
 /* Top bar: the portfolio's glass nav, with the way back on the left and the source code on the right */
-.project-nav { padding: 0 10px; }
+.project-nav { padding: 0 10px; gap: 10px; }
+.project-nav .btn { min-width: 0; } /* sized by their labels, so both fit on the smallest phones */
 
 /* Room under the fixed top bar */
 section.project-page { padding-top: calc(var(--nav-h) + clamp(16px, 3vw, 32px)); }
@@ -20,7 +21,7 @@ section.project-page { padding-top: calc(var(--nav-h) + clamp(16px, 3vw, 32px));
 .project-info .chips { justify-content: center; margin-top: 0.8rem; }
 
 /* Phones: the top bar buttons shorten to "Back" and "GitHub" */
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .wide-only { display: none; }
 }
 

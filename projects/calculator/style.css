@@ -59,11 +59,8 @@
 .calculator .equalBtn { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 700; }
 .calculator .equalBtn:hover { background: var(--accent-hover); color: var(--on-accent); }
 
+/* Small phones: 52px keys still fit a 320px-wide screen */
 @media (max-width: 420px) {
-  .calculator { --key-size: 56px; --key-gap: 12px; padding: 16px; }
+  .calculator { --key-size: 52px; --key-gap: 11px; padding: 16px; }
   #inputBox { font-size: 2.1rem; padding: 0.9rem 1.1rem; }
-}
-
-@media (max-width: 340px) {
-  .calculator { --key-size: 50px; --key-gap: 10px; }
 }
