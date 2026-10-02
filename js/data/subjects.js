@@ -7,6 +7,7 @@
 const subjects = [
   { name: "Operating Systems", href: "notes/operating-systems.html" },
   { name: "Computer Networks", href: "notes/computer-networks.html" },
+  { name: "Machine Learning", href: "notes/machine-learning.html" },
   { name: "Compiler Design", href: "notes/compiler-design.html" },
   { name: "Database Management Systems", href: "notes/database-management-systems.html" },
   { name: "Theory of Computation", href: "notes/theory-of-computation.html" },
